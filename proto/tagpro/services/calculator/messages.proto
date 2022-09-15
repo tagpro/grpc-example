@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package tagpro.grpcexample.service.calculator;
+
+option go_package = "github.com/tagpro/grpc-example/pkg/tagpro/services/calculator;calculator";
+
+service Calculator {
+  rpc Add (AddRequest) returns (AddResponse);
+
+}
+
+message AddRequest {
+  int64 a = 1;
+  int64 b = 2;
+}
+
+message AddResponse {
+  int64 result = 1;
+}
