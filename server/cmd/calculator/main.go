@@ -12,10 +12,12 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
+// Boilerplate to start service
 const port = "50051"
 
 func main() {
-	// Boilerplate to start service
+
+	// Create a listener on TCP port
 	exposedPort := os.Getenv("PORT")
 	if exposedPort == "" {
 		exposedPort = port
@@ -31,11 +33,13 @@ func main() {
 		}
 	}(lis)
 
+	// Create a gRPC server object
 	server := grpc.NewServer()
+
+	// Attach server reflection. This helps clients like Postman or bloomRPC to identify the methods in service
 	reflection.Register(server)
 
-	// Connect service code to listener port
-	// Register API v1
+	// Register API with gRPC server
 	calculatorService := calculator.NewCalculatorService()
 	v1.RegisterCalculatorServer(server, calculatorService)
 
