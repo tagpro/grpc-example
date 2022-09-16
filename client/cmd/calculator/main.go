@@ -26,10 +26,10 @@ func main() {
 		}
 	}(conn)
 
-	add(ctx, conn)
+	calc(ctx, conn)
 }
 
-func add(ctx context.Context, conn *grpc.ClientConn) {
+func calc(ctx context.Context, conn *grpc.ClientConn) {
 	// Create a client
 	client := v1.NewCalculatorClient(conn)
 
